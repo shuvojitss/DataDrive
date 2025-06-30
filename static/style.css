@@ -1,0 +1,407 @@
+/* ---------- GLOBAL RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  background: linear-gradient(to right, #373737, #000000);
+  padding: 20px 0;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f7f7f8;
+}
+
+.logo-img {
+  height: 60px;
+  width: 60px;
+  margin-right: 8px;
+  object-fit: contain;
+}
+
+.header-flex {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* ---------- SEARCH BAR ---------- */
+.search-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box form {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-box input[type="text"] {
+  border: none;
+  padding: 14px 20px;
+  font-size: 16px;
+  flex: 1;
+  border-radius: 40px 0 0 40px;
+  outline: none;
+}
+
+.search-box button {
+  background: #1c7002;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  font-size: 16px;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+}
+
+/* ---------- ACTION BUTTONS ---------- */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.upload-btn,
+.logout-btn {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 0;
+  margin-right: 1px;
+}
+
+.upload-btn {
+  background-color: #edd500;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+}
+
+.logout-btn {
+  background-color: #c94545;
+  color: white;
+  font-size: 1rem;
+}
+
+/* ---------- CONTAINER LAYOUT ---------- */
+.container {
+  display: flex;
+  min-height: calc(100vh - 100px);
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+  width: 220px;
+  background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+  padding: 30px 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ---------- MAIN CONTENT ---------- */
+main {
+  flex: 1;
+  padding: 40px;
+  background: linear-gradient(to bottom right, #f2f2f2, #f0f4ff);
+  overflow-y: auto;
+}
+
+main h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* ---------- FILE GRID ---------- */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow: visible;
+  position: relative;
+  z-index: 0;
+}
+
+/* ---------- FILE CARD ---------- */
+.file-card {
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: visible;
+  z-index: 1;
+}
+
+.file-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.file-card a img,
+.file-card a video,
+.file-card a iframe {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f0f0f0;
+}
+
+.file-icon {
+  font-size: 80px;
+  text-align: center;
+  height: 120px;
+  line-height: 120px;
+  background: #f0f0f0;
+  border-radius: 6px;
+}
+
+.file-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-card-footer p {
+  font-size: 14px;
+  word-break: break-word;
+  flex: 1;
+}
+
+/* ---------- DROPDOWN MENU ---------- */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 1000; /* Ensure it stays above overlapping elements */
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  padding: 4px;
+}
+
+/* Show dropdown when hovering over .dropdown (includes button and menu) */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 28px;
+  z-index: 9999;
+  background-color: white;
+  min-width: 130px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Dropdown options */
+.dropdown-content a,
+.dropdown-content .delete-link {
+  display: block;
+  padding: 10px 15px;
+  background: white;
+  color: #333;
+  font-size: 14px;
+  text-align: left;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Hover effect for dropdown options */
+.dropdown-content a:hover,
+.dropdown-content .delete-link:hover {
+  background-color: #f0f0f0;
+}
+
+
+/* ---------- MODAL ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+}
+
+.modal-content input[type="file"] {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.modal-content button {
+  background: #2b6777;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -10px;
+  margin-right: -10px;
+}
+
+/* ---------- LOGIN/SIGNUP PAGE ---------- */
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #dff6ff;
+}
+
+.auth-form {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-form h2 {
+  margin-bottom: 20px;
+  color: #2b6777;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #2b6777;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth-form p {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+/* ---------- STORAGE BAR ---------- */
+.storage-bar {
+  font-size: 15px;
+  margin-top: auto;
+  padding-top: 20px;
+  color: #ccc;
+}
+
+.progress-container {
+  background: #9a9a9a;
+  height: 10px;
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.progress {
+  background: #d50000;
+  height: 100%;
+  border-radius: 5px;
+}
