@@ -8,24 +8,23 @@
 <body>
   <!-- Header -->
   <header>
-  <div class="header-flex">
-    <div class="logo">
-      <img src="/static/logo.png" alt="Logo" class="logo-img">
-      DataDrive
+    <div class="header-flex">
+      <div class="logo">
+        <img src="/static/logo.png" alt="Logo" class="logo-img">
+        DataDrive
+      </div>
+      <div class="search-box">
+        <form method="GET" action="/home">
+          <input type="text" name="query" placeholder="Search files..." />
+          <button type="submit"><span class="search-icon">🔍</span></button>
+        </form>
+      </div>
+      <div class="action-buttons">
+        <button class="upload-btn" onclick="document.getElementById('uploadModal').style.display='block'">Upload</button>
+        <a href="/logout" class="logout-btn">Logout</a>
+      </div>
     </div>
-    <div class="search-box">
-      <form method="GET" action="/home">
-        <input type="text" name="query" placeholder="Search files..." />
-        <button type="submit"><span class="search-icon">🔍</span></button>
-      </form>
-    </div>
-    <div class="action-buttons">
-      <button class="upload-btn" onclick="document.getElementById('uploadModal').style.display='block'">Upload</button>
-      <a href="/logout" class="logout-btn">Logout</a>
-    </div>
-  </div>
-</header>
-
+  </header>
 
   <!-- Main Layout -->
   <div class="container">
@@ -36,46 +35,47 @@
       <a href="/home?category=Pictures">Pictures</a>
       <a href="/home?category=Videos">Videos</a>
       <a href="/home?category=Documents">Documents</a>
-        <div class="storage-bar">
-    <p><strong>{{ (storage_used / (1024 * 1024)) | round(2) }} MB</strong> of {{ max_storage }} MB used</p>
-    <div class="progress-container">
-      <div class="progress" {% if storage_percent is defined %}style="width: {{ storage_percent }}%" {% endif %}></div>
-    </div>
-  </div>
+
+      <div class="storage-bar">
+        <p><strong>{{ (storage_used / (1024 * 1024)) | round(2) }} MB</strong> of {{ max_storage }} MB used</p>
+        <div class="progress-container">
+          <div class="progress" {% if storage_percent is defined %}style="width: {{ storage_percent }}%" {% endif %}></div>
+        </div>
+      </div>
     </aside>
+
     <!-- Main Content -->
     <main>
       <h2>{{ category }} Files</h2>
       <div class="grid">
         {% for file in files %}
-          <div class="file-card">
-  <a href="{{ url_for('view_file', filename=file) }}" target="_blank">
-    {% if file.endswith(('.png', '.jpg', '.jpeg', '.gif')) %}
-      <img src="{{ url_for('uploaded_file', filename=file) }}" alt="{{ file }}">
-    {% elif file.endswith(('.mp4', '.webm')) %}
-      <video src="{{ url_for('uploaded_file', filename=file) }}" muted></video>
-    {% elif file.endswith(('.pdf', '.txt', '.docx')) %}
-      <iframe src="{{ url_for('uploaded_file', filename=file) }}"></iframe>
-    {% else %}
-      <div class="file-icon">📄</div>
-    {% endif %}
-  </a>
+        <div class="file-card">
+          <a href="{{ url_for('uploaded_file', filename=file) }}" target="_blank">
+            {% if file.endswith(('.png', '.jpg', '.jpeg', '.gif')) %}
+              <img src="{{ url_for('uploaded_file', filename=file) }}" alt="{{ file }}">
+            {% elif file.endswith(('.mp4', '.webm')) %}
+              <video src="{{ url_for('uploaded_file', filename=file) }}" muted></video>
+            {% elif file.endswith(('.pdf', '.txt', '.docx')) %}
+              <iframe src="{{ url_for('uploaded_file', filename=file) }}"></iframe>
+            {% else %}
+              <div class="file-icon">📄</div>
+            {% endif %}
+          </a>
 
-  <div class="file-card-footer">
-    <p>{{ file }}</p>
-    <div class="dropdown">
-  <button class="menu-btn">⋮</button>
-  <div class="dropdown-content">
-    <a href="{{ url_for('view_file', filename=file) }}" target="_blank">Open</a>
-    <a href="{{ url_for('uploaded_file', filename=file) }}" download>Download</a>
-    <form method="POST" action="{{ url_for('delete_file', filename=file) }}" onsubmit="return confirm('Delete this file?')">
-      <button type="submit" class="delete-link">Delete</button>
-    </form>
-  </div>
-</div>
-  </div>
-</div>
-
+          <div class="file-card-footer">
+            <p>{{ file }}</p>
+            <div class="dropdown">
+              <button class="menu-btn">⋮</button>
+              <div class="dropdown-content">
+                <a href="{{ url_for('uploaded_file', filename=file) }}" target="_blank">Open</a>
+                <a href="{{ url_for('uploaded_file', filename=file) }}" download>Download</a>
+                <form method="POST" action="{{ url_for('delete_file', filename=file) }}" onsubmit="return confirm('Delete this file?')">
+                  <button type="submit" class="delete-link">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </div>
     </main>
